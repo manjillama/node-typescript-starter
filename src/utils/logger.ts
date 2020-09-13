@@ -5,7 +5,7 @@ const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
     winston.format.prettyPrint(),
-    winston.format.metadata()
+    winston.format.metadata(),
   ),
   transports: [
     new winston.transports.Console({ colorize: true, prettyPrint: true }),
@@ -19,7 +19,7 @@ logger.add(
       useUnifiedTopology: true,
     },
     level: 'error',
-  })
+  }),
 );
 
 export default logger;

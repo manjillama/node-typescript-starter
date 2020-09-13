@@ -1,15 +1,15 @@
 class AppError extends Error {
   statusCode: number;
-  status: String;
+  status: string;
   isOperational: boolean;
 
   // External error properties
-  path: String;
+  path: string;
   errors: any[];
-  value: String;
-  kind: String;
+  value: string;
+  kind: string;
 
-  constructor(message: any, statusCode: any) {
+  constructor(message: string, statusCode: number) {
     super(message);
     this.statusCode = statusCode;
     this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';

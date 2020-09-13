@@ -1,7 +1,7 @@
 import logger from '../utils/logger';
 import mongoose from 'mongoose';
 
-export default function () {
+export default function (): void {
   mongoose
     .connect(process.env.DATABASE, {
       useNewUrlParser: true,
