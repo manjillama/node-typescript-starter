@@ -1,6 +1,7 @@
 module.exports = {
   roots: ['.'],
   testEnvironment: 'node',
+  setupFilesAfterEnv: ['./tests/setup.js'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
