@@ -17,7 +17,7 @@ describe('GET /', () => {
   it('should return all genres', async () => {
     await Lyric.insertMany([
       { song: '_test_ Smelly cat', lyrics: 'Bla bla bla' },
-      { song: '_test_ Kurt robin kirk', lyrics: 'Bla bla bla' },
+      { song: '_test_ Kurt robin', lyrics: 'Bla bla bla' },
     ]);
 
     const res: any = await request(app).get('/api/lyrics');
