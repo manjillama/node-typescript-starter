@@ -1,14 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
 /**
- * HOF to catch async exceptions
- * Executes the callback if no exception is caught
- *
- * @param  {function} fn handler function
+ * HOF to catch asynchronous exceptions.
+ * If no exception is catched then it'll invoke the callback function.
+ * Incase an exception is caught it'll invoke the next() function with error as an arguement.
+ * @param {function} fn asynchronous handler function
+ * @return {function} wrapper function
  */
 export default (fn: Function) => (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {
+): void => {
   fn(req, res, next).catch(next);
 };

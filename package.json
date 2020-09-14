@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node dist/server",
+    "start": "NODE_ENV=prod node dist/server",
     "build": "tsc",
-    "dev": "NODE_ENV=development nodemon src/server.ts",
-    "test": "jest",
+    "dev": "NODE_ENV=dev nodemon src/server.ts",
+    "test": "jest --detectOpenHandles",
     "test:watch": "jest --watchAll --detectOpenHandles  --coverage"
   },
   "keywords": [],

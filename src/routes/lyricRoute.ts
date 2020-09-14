@@ -3,6 +3,9 @@ import lyricController from '../controllers/lyricController';
 
 const router = express.Router();
 
+/**
+ * Endpoint: /api/lyrics
+ */
 router
   .route('/')
   .get(lyricController.getAllLyrics)
