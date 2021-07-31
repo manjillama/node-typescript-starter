@@ -1,5 +1,5 @@
 <h3 align="center">
-    Complete TypeScript, Express/Node.js application boilerplate setup along with linters, pre-commit hooks, and unit/integration tests using jest.
+    Complete TypeScript, Express/Node.js application boilerplate setup along with error logger, linters, pre-commit hooks, and unit/integration tests using jest.
 </h3>
 
 <p align="center">
@@ -127,4 +127,3 @@ Read our [contributing guide](./CONTRIBUTING.md) to learn about our development 
 ## License
 
 Licensed under the [MIT License](./LICENSE).
-
