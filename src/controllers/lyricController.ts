@@ -1,40 +1,20 @@
-import { Request, Response, NextFunction } from 'express';
-import Lyric from '../models/lyricModel';
+import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import AppError from '../utils/appError';
+import Lyric from '../models/lyric.model';
+import factoryService from '../services/factoryService';
+import { StringMap } from '../types';
 
 const getAllLyrics = async (req: Request, res: Response): Promise<void> => {
-  const data = await Lyric.find();
-  res.status(200).json({
+  const [lyrics, total, size] = await factoryService.getAll(Lyric, req.query as StringMap).exec();
+
+  res.status(StatusCodes.OK).json({
     status: 'success',
-    data: data,
+    data: {
+      lyrics,
+      total,
+      size
+    }
   });
 };
 
-const getLyric = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-): Promise<void> => {
-  const data = await Lyric.findById(req.params.id);
-
-  if (!data)
-    return next(
-      new AppError('No lyric found with that id', StatusCodes.NOT_FOUND),
-    );
-
-  res.status(200).json({
-    status: 'success',
-    data: data,
-  });
-};
-
-const addLyric = async (req: Request, res: Response): Promise<void> => {
-  const data = await Lyric.create(req.body);
-  res.status(200).json({
-    status: 'success',
-    data: data,
-  });
-};
-
-export default { getAllLyrics, addLyric, getLyric };
+export default { getAllLyrics };

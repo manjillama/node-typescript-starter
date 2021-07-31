@@ -2,8 +2,10 @@
 node_modules/
 
 # testing
-/coverage
+coverage/
 
 # production
-/dist
+dist/
 *.env
+
+*.log

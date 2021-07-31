@@ -8,6 +8,8 @@ class AppError extends Error {
   errors: any[];
   value: string;
   kind: string;
+  field: string;
+  code: number | string;
 
   constructor(message: string, statusCode: number) {
     super(message);

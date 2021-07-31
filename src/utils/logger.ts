@@ -1,32 +1,30 @@
-import winston from 'winston';
+import winston, { Logger } from 'winston';
+import { config, keys } from '../config';
 import 'winston-mongodb';
 
-let logger;
+// eslint-disable-next-line import/no-mutable-exports
+let logger: Logger;
+const { transports }: any = winston;
 
-if (process.env.NODE_ENV === 'test') {
+if (process.env.NODE_ENV === config.envs.TEST) {
   logger = winston.createLogger({
-    transports: [new winston.transports.Console({ level: 'error' })],
+    transports: [new transports.Console({ level: 'error' })]
   });
 } else {
   logger = winston.createLogger({
     level: 'info',
-    format: winston.format.combine(
-      winston.format.prettyPrint(),
-      winston.format.metadata(),
-    ),
-    transports: [
-      new winston.transports.Console({ colorize: true, prettyPrint: true }),
-    ],
+    format: winston.format.combine(winston.format.prettyPrint(), winston.format.metadata()),
+    transports: [new transports.Console()]
   });
 
   logger.add(
-    new winston.transports.MongoDB({
-      db: process.env.DATABASE,
+    new transports.MongoDB({
+      db: keys.MONGO_URI,
       options: {
-        useUnifiedTopology: true,
+        useUnifiedTopology: true
       },
-      level: 'error',
-    }),
+      level: 'error'
+    })
   );
 }
-export default logger;
+export { logger };
