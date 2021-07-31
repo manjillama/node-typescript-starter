@@ -1,21 +1,57 @@
 module.exports = {
-  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
-  parserOptions: {
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module', // Allows for the use of imports
+  env: {
+    es6: true,
+    node: true,
+    'jest/globals': true,
   },
   extends: [
-    'plugin:@typescript-eslint/recommended', // Uses the recommended rules
-    'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
-    'plugin:prettier/recommended', // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    'airbnb-base',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:jest/recommended',
+    'plugin:prettier/recommended',
   ],
-  plugins: ['@typescript-eslint'],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 11,
+    sourceType: 'module',
+  },
+  plugins: ['@typescript-eslint', 'jest'],
+  ignorePatterns: ['**/dist/**'],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
   rules: {
-    'no-console': 'warn',
+    'import/prefer-default-export': 'off',
+    'func-names': 'off',
+    'lines-between-class-members': 'off',
+    'no-return-await': 'off',
+    'consistent-return': 'off',
+    'no-unused-vars': ['error', { argsIgnorePattern: 'error|req|res|val' }],
+    'no-underscore-dangle': 'off',
+    'prefer-destructuring': 'off',
+    'class-methods-use-this': 'off',
+    camelcase: 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
-      { argsIgnorePattern: 'req|res|next|val' },
+      { argsIgnorePattern: 'error|req|res|val' },
     ],
-    '@typescript-eslint/ban-types': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
   },
 };
