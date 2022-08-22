@@ -13,23 +13,29 @@ import xss from 'xss-clean';
 import compression from 'compression';
 import { loadDB, loadRoutes } from './startup';
 import error from './middlewares/error';
-import { config } from './config';
+import { keys } from './config';
 
-// Changing default timezone ¯\_(ツ)_/
+// Change default timezone ¯\_(ツ)_/
 process.env.TZ = 'Europe/Amsterdam';
 
 const app = express();
-app.locals.version = '0.0.1';
+app.locals.version = '1.0.0';
+app.locals.title = 'Typescript node boilerplate';
+app.set('trust proxy', true);
 
-app.use(morgan(config.LOGS));
-app.use(cors({ origin: config.CORS_WHITELISTS, credentials: true }));
-
+// Parse incoming requests with JSON
+app.use(express.json());
+// Request logging
+app.use(morgan(keys.LOGS));
+// Enable CORS - Cross Origin Resource Sharing
+app.use(cors({ origin: keys.CORS_WHITELISTS, credentials: true }));
+// secure apps by setting various HTTP headers
 app.use(helmet());
 // Data sanitization against NOSQL query injection
 app.use(mongoSanitize());
 // Data sanitization against XSS
 app.use(xss());
-// For response compression i.e html, json...
+// Gzip response compression
 app.use(compression());
 
 app.get('/api/version', (req: Request, res: Response) => {

@@ -32,9 +32,9 @@
 
 ## Requirements
 
-- NodeJS >= 12.x
+- NodeJS >= 14.x
 - Yarn >= 1.x
-- MongoDB >= 4.2
+- MongoDB >= 5.x
 
 ## Setup
 
