@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import lyricRoute from './lyricRoute';
+import lyricRoute from './lyric.route';
 
 const router = Router();
 

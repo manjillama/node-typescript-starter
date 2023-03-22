@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { logger } from '../utils';
+import { logger } from '../utils/logger';
 import { keys } from '../config';
 
 export function loadDB(): void {

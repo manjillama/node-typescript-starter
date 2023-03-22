@@ -1,12 +1,13 @@
 const config = {
-  envs: {
+  ENVS: {
     PROD: 'production',
     DEV: 'development',
+    STAGE: 'staging',
     TEST: 'test'
   },
-  CORS_WHITELISTS: new RegExp(process.env.CORS_WHITELISTS),
-  LOGS: process.env.NODE_ENV === 'production' ? 'combined' : 'dev'
+  defaultTimeZone: 'Asia/Kathmandu',
+  maxSizeUpload: 1024 * 1024 // bytes
 };
 
 export { config };
-export * from './envs';
+export * from './keys';
